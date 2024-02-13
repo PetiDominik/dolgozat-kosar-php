@@ -52,7 +52,7 @@ class BasketController extends Controller
     }
 
     //Tegyél egy terméket a bejelentkezett felhasználó kosarába (item_id paraméter)!
-    //CREATE TRIGGER decreaseQuantity AFTER INSERT ON baskets FOR EACH ROW UPDATE products SET quantity = quantity - 1 WHERE item_id = NEW.item_id;
+    //
     public function addItemToBasket($itemId) {
         $userId = Auth::user()->id;
         $dateTime = now();
@@ -62,5 +62,10 @@ class BasketController extends Controller
         $basketItem->item_id = $itemId;
 
         return $basketItem->save();
+    }
+
+    //Töröld az összes 2 napnál régebbi kosár tartalmakat!
+    public function deleteBaskets2DayOlder() {
+        return DB::delete("DELETE FROM baskets WHERE DATEDIFF(CURDATE(), created_at) >= 2");
     }
 }

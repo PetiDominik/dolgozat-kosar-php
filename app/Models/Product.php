@@ -14,5 +14,6 @@ class Product extends Model
     protected $fillable = [
         'type_id',
         'date',
+        'quantity'
     ];
 }

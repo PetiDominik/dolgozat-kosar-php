@@ -30,3 +30,4 @@ Route::get('baskets', [BasketController::class, 'index']);
 Route::get('baskets/{user_id}/{item_id}', [BasketController::class, 'show']);
 Route::post('baskets', [BasketController::class, 'store']);
 Route::get("products-by-type/{typeId}", [ProductTypeController::class, "productsByType"]);
+Route::get("delete-2-day-old", [BasketController::class, "deleteBaskets2DayOlder"]);
